@@ -22,4 +22,7 @@ butInstall.addEventListener('click', async () => {
 });
 
 // TODO: Add an handler for the `appinstalled` event
-window.addEventListener('appinstalled', (event) => {});
+window.addEventListener('appinstalled', (event) => {
+  console.log('Jate PWA was installed', event);
+  deferredPrompt = null;
+});
