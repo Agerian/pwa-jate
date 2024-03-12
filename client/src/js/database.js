@@ -31,10 +31,16 @@ export const getDb = async () => {
   const store = tx.objectStore('jate');
   const request = store.get(1);
   const result = await request;
+
+  if (!result || !result.value) {
+    console.log('No existing data found in database');
+    return null; // or return an empty string or any default value you prefer
+  }
+
   const headerPattern = /^(\/\*\n.*\*\njust another text editor\n\s*\n)/gm;
   const filteredContent = result.value.replace(headerPattern, '');
   console.log('Data Retrieved from the Database', result);
-  return filteredContent ? filteredContent : result.value;
+  return filteredContent;
 };
 
 initdb();
